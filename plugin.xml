@@ -1,69 +1,69 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-fyber" version="0.1.2" xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordova-plugin-fyber</name>
-    <description>Add support for Fyber ads in a Cordova apps</description>
-    <js-module src="www/fyber.js" name="Fyber">
-        <clobbers target="Fyber" />
-    </js-module>
+<plugin id="cordova-plugin-fyber" version="1.0.2" 
+  xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>cordova-plugin-fyber</name>
+  <description>Add support for Fyber ads in a Cordova apps</description>
+  <js-module src="www/fyber.js" name="Fyber">
+    <clobbers target="Fyber" />
+  </js-module>
 
-    <engines>
-        <engine name="cordova-android" version=">=4.0.0" />
-        <engine name="cordova-plugman" version=">=4.2.0" />
-    </engines>
+  <engines>
+    <engine name="cordova-android" version=">=4.0.0" />
+    <engine name="cordova-plugman" version=">=4.2.0" />
+  </engines>
 
-    <platform name="android">
+  <platform name="android">
 
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="FyberPlugin">
-                <param name="android-package" value="com.mondocore.cordova.plugin.fyber.FyberPlugin" />
-            </feature>
-        </config-file>
-        
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.INTERNET" />
-        </config-file>
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="FyberPlugin">
+        <param name="android-package" value="com.mondocore.cordova.plugin.fyber.FyberPlugin" />
+      </feature>
+    </config-file>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:name="com.fyber.ads.ofw.OfferWallActivity" android:configChanges="orientation|screenSize" />
-            <activity android:configChanges="screenSize|orientation" android:name="com.fyber.ads.videos.RewardedVideoActivity" android:hardwareAccelerated="true"/>
-            <activity android:name="com.fyber.ads.interstitials.InterstitialActivity" android:configChanges="screenSize|orientation" android:theme="@android:style/Theme.Translucent" />
-        </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET" />
+    </config-file>
 
-        <resource-file src="res/android/layout/banner.xml" target="res/layout/banner.xml" />
-        <source-file src="src/android/FyberPlugin.java"
-            target-dir="src/com/mondocore/cordova/plugin/fyber" />
-        <framework src="src/android/fyber.gradle" custom="true" type="gradleReference" />
-        <framework src="com.google.android.gms:play-services-ads:16.0.0" />
-        
-    </platform>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <activity android:name="com.fyber.ads.ofw.OfferWallActivity" android:configChanges="orientation|screenSize" />
+      <activity android:configChanges="screenSize|orientation" android:name="com.fyber.ads.videos.RewardedVideoActivity" android:hardwareAccelerated="true"/>
+      <activity android:name="com.fyber.ads.interstitials.InterstitialActivity" android:configChanges="screenSize|orientation" android:theme="@android:style/Theme.Translucent" />
+    </config-file>
 
-    <platform name="ios">
+    <resource-file src="res/android/layout/banner.xml" target="res/layout/banner.xml" />
+    <source-file src="src/android/FyberPlugin.java" target-dir="src/com/mondocore/cordova/plugin/fyber" />
+    <framework src="src/android/fyber.gradle" custom="true" type="gradleReference" />
+    <framework src="com.google.android.gms:play-services-ads:16.0.0" />
 
-        <config-file target="config.xml" parent="/*">
-            <feature name="FyberPlugin">
-                <param name="ios-package" value="FyberPlugin"/>
-            </feature>
-        </config-file>
+  </platform>
 
-        <framework src="SystemConfiguration.framework" />
-        <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
-            <dict>
-                <key>NSAllowsArbitraryLoads</key>
-                <true/>
-                <key>NSAllowsArbitraryLoadsForMedia</key>
-                <true/>
-                <key>NSAllowsArbitraryLoadsInWebContent</key>
-                <true/>
-                <key>NSAllowsLocalNetworking</key>
-                <true/>
-            </dict>
-        </config-file>
+  <platform name="ios">
 
-        <framework src="FyberSDK" type="podspec" spec="8.20.0" />
+    <config-file target="config.xml" parent="/*">
+      <feature name="FyberPlugin">
+        <param name="ios-package" value="FyberPlugin"/>
+      </feature>
+    </config-file>
 
-        <header-file src="src/ios/CDVFyber.h" />
-        <source-file src="src/ios/CDVFyber.m" />
+    <framework src="SystemConfiguration.framework" />
+    <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+      <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSAllowsArbitraryLoadsForMedia</key>
+        <true/>
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+      </dict>
+    </config-file>
 
-    </platform>
+    <framework src="FyberSDK" type="podspec" spec="8.20.0" />
+
+    <header-file src="src/ios/CDVFyber.h" />
+    <source-file src="src/ios/CDVFyber.m" />
+
+  </platform>
 </plugin>
