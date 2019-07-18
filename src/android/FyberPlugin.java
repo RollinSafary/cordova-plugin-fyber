@@ -1,40 +1,31 @@
 package com.mondocore.cordova.plugin.fyber;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import android.content.Intent;
-import android.util.Log;
-import android.widget.FrameLayout;
-
 import com.fyber.Fyber;
-import com.fyber.utils.FyberLogger;
-import com.fyber.requesters.OfferWallRequester;
-
-import com.fyber.ads.videos.RewardedVideoActivity;
+import com.fyber.ads.AdFormat;
+import com.fyber.ads.banners.BannerAd;
+import com.fyber.ads.banners.BannerAdListener;
+import com.fyber.ads.banners.BannerAdView;
 import com.fyber.currency.VirtualCurrencyErrorResponse;
 import com.fyber.currency.VirtualCurrencyResponse;
+import com.fyber.requesters.InterstitialRequester;
+import com.fyber.requesters.OfferWallRequester;
+import com.fyber.requesters.RequestCallback;
+import com.fyber.requesters.RequestError;
 import com.fyber.requesters.RewardedVideoRequester;
 import com.fyber.requesters.VirtualCurrencyCallback;
 import com.fyber.requesters.VirtualCurrencyRequester;
-import com.fyber.requesters.InterstitialRequester;
-
-import com.fyber.ads.AdFormat;
-import com.fyber.requesters.RequestCallback;
-import com.fyber.requesters.RequestError;
-
-import com.fyber.ads.banners.BannerAd;
-import com.fyber.ads.banners.BannerAdView;
-import com.fyber.ads.banners.BannerAdListener;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
-import org.apache.cordova.PluginResult.Status;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.content.Intent;
+import android.widget.FrameLayout;
+import sun.rmi.runtime.Log;
 
 public class FyberPlugin extends CordovaPlugin implements VirtualCurrencyCallback{
 
@@ -50,6 +41,7 @@ public class FyberPlugin extends CordovaPlugin implements VirtualCurrencyCallbac
     private static final String ACTION_SHOW_OFFERWALL = "showOfferwall";
     private static final String ACTION_SHOW_REWARDEDVIDEO = "showRewardedVideo";
     private static final String ACTION_SHOW_INTERSTITIAL = "showInterstitial";
+    private static final String ACTION_SHOW_BANNER = "showBanner";
 
     private static final String OPT_APPLICATION_KEY = "appKey";
     private static final String OPT_USER_ID = "userId";
@@ -72,6 +64,13 @@ public class FyberPlugin extends CordovaPlugin implements VirtualCurrencyCallbac
     public static final String EVENT_FYBER_INTERSTITIAL_LOADED = "fyberInterstitialLoaded";
     public static final String EVENT_FYBER_INTERSTITIAL_NOT_AVAILABLE = "fyberInterstitialNotAvailable";
     public static final String EVENT_FYBER_INTERSTITIAL_ERROR = "fyberInterstitialError";
+
+    public static final String EVENT_FYBER_BANNER_LOADED = "fyberBannerLoaded";
+    public static final String EVENT_FYBER_BANNER_NOT_AVAILABLE = "fyberBannerNotAvailable";
+    public static final String EVENT_FYBER_BANNER_ERROR = "fyberBannerError";
+    public static final String EVENT_FYBER_BANNER_LEFTAPP = "fyberBannerLeftApp";
+    public static final String EVENT_FYBER_BANNER_CLICKED = "fyberBannerClicked";
+    
     
     public static final String EVENT_FYBER_VCFAILED = "fyberVCFailed";
     public static final String EVENT_FYBER_VCSUCCESS = "fyberVCSuccess";
